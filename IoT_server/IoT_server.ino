@@ -17,49 +17,100 @@
 
 ESP8266WebServer server(80);
 
-void handleRoot(){
-  
+void handleRoot() {
+
 }
 
-void handleNotFound(){
+void handleNotFound() {
   String message = "File Not Found\n\n";
   message += "URI: ";
   message += server.uri();
   message += "\nMethod: ";
-  message += (server.method() == HTTP_GET)?"GET":"POST";
+  message += (server.method() == HTTP_GET) ? "GET" : "POST";
   message += "\nArguments: ";
   message += server.args();
   message += "\n";
-  for (uint8_t i=0; i<server.args(); i++){
+  for (uint8_t i = 0; i < server.args(); i++) {
     message += " " + server.argName(i) + ": " + server.arg(i) + "\n";
   }
   server.send(404, "text/plain", message);
 }
 
-void d0On(){
+void d0On() {
   digitalWrite(D0, 1);
   server.send(200);
 }
-void d1On(){digitalWrite(D1, 1);}
-void d2On(){digitalWrite(D2, 1);}
-void d3On(){digitalWrite(D3, 1);}
-void d4On(){digitalWrite(D4, 1);}
-void d5On(){digitalWrite(D5, 1);}
-void d6On(){digitalWrite(D6, 1);}
-void d7On(){digitalWrite(D7, 1);}
-void d8On(){digitalWrite(D8, 1);}
+void d1On() {
+  digitalWrite(D1, 1);
+  server.send(200);
+}
+void d2On() {
+  digitalWrite(D2, 1);
+  server.send(200);
+}
+void d3On() {
+  digitalWrite(D3, 1);
+  server.send(200);
+}
+void d4On() {
+  digitalWrite(D4, 1);
+  server.send(200);
+}
+void d5On() {
+  digitalWrite(D5, 1);
+  server.send(200);
+}
+void d6On() {
+  digitalWrite(D6, 1);
+  server.send(200);
+}
+void d7On() {
+  digitalWrite(D7, 1);
+  server.send(200);
+}
+void d8On() {
+  digitalWrite(D8, 1);
+  server.send(200);
+}
 
-void d0Off(){digitalWrite(D0, 0);}
-void d1Off(){digitalWrite(D1, 0);}
-void d2Off(){digitalWrite(D2, 0);}
-void d3Off(){digitalWrite(D3, 0);}
-void d4Off(){digitalWrite(D4, 0);}
-void d5Off(){digitalWrite(D5, 0);}
-void d6Off(){digitalWrite(D6, 0);}
-void d7Off(){digitalWrite(D7, 0);}
-void d8Off(){digitalWrite(D8, 0);}
+void d0Off() {
+  digitalWrite(D0, 0);
+  server.send(200);
+}
+void d1Off() {
+  digitalWrite(D1, 0);
+  server.send(200);
+}
+void d2Off() {
+  digitalWrite(D2, 0);
+  server.send(200);
+}
+void d3Off() {
+  digitalWrite(D3, 0);
+  server.send(200);
+}
+void d4Off() {
+  digitalWrite(D4, 0);
+  server.send(200);
+}
+void d5Off() {
+  digitalWrite(D5, 0);
+  server.send(200);
+}
+void d6Off() {
+  digitalWrite(D6, 0);
+  server.send(200);
+}
+void d7Off() {
+  digitalWrite(D7, 0);
+  server.send(200);
+}
+void d8Off() {
+  digitalWrite(D8, 0);
+  server.send(200);
+}
 
-void setup(void){
+void setup(void) {
   pinMode(D0, OUTPUT);
   pinMode(D1, OUTPUT);
   pinMode(D2, OUTPUT);
@@ -118,13 +169,13 @@ void setup(void){
   server.on("/d6-off", d6Off);
   server.on("/d7-off", d7Off);
   server.on("/d8-off", d8Off);
-  
+
   server.onNotFound(handleNotFound);
 
   server.begin();
   Serial.println("HTTP server started");
 }
 
-void loop(void){
+void loop(void) {
   server.handleClient();
 }
