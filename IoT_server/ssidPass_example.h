@@ -1,2 +1,2 @@
-char* ssid = "";
+char* ssid = "Fatec WiFi";
 char* password = "";

@@ -5,7 +5,8 @@ import java.net.URL;
 
 public class ConnectionServer {
 	
-	private String stem = "http://192.168.1.76/";
+	private String stem = "http://172.16.8.68/";
+	//private String stem = "http://192.168.1.76/";
 
 	public void getConnection(String path) {
 		try {

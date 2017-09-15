@@ -24,7 +24,8 @@ public class TelegramClient extends TelegramLongPollingBot implements Token {
 				} catch (TelegramApiException e) {
 					e.printStackTrace();
 				}
-			} else {
+			} else if(){}
+			else {
 
 			}
 
@@ -111,18 +112,34 @@ public class TelegramClient extends TelegramLongPollingBot implements Token {
 			}
 			if (call_data.equals("d6_off")) {
 				answer = "led 7 desligado";
-				State.d[6] = true;
+				State.d[6] = false;
 				new ConnectionServer().getConnection("d6-off");
 			}
 			if(call_data.equals("d7_off")) {
 				answer = "led8 desligado";
-				State.d[7] = true;
+				State.d[7] = false;
 				new ConnectionServer().getConnection("d7-off");
 			}
 			if(call_data.equals("d8_off")) {
 				answer = "led8 desligado";
-				State.d[8] = true;
+				State.d[8] = false;
 				new ConnectionServer().getConnection("d8-off");
+			}
+			if(call_data.equals("todos")) {
+				for(int i = 0; i < 9; i++) {
+					State.d[i] = true;
+					new ConnectionServer().getConnection("d" + i + "-on");
+				}
+				answer = "todos estão ligados";
+				
+			}
+			if(call_data.equals("desligaTodos")) {
+				for(int i = 0; i < 9; i++) {
+					State.d[i] = false;
+					new ConnectionServer().getConnection("d" + i + "-off");
+				}
+				answer = "todos estão desligados";
+				
 			}
 			
 			EditMessageText new_message = new EditMessageText().setChatId(chat_id).setMessageId((int) (message_id))
