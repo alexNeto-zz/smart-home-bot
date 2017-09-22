@@ -40,11 +40,13 @@ public class TelegramClient extends TelegramLongPollingBot {
 			long message_id = update.getCallbackQuery().getMessage().getMessageId();
 			long chat_id = update.getCallbackQuery().getMessage().getChatId();
 			String answer = null;
-
-			int index = Integer.parseInt(call_data.substring(0, 0));
+			int index = 0;
+			try {
+			index = Integer.parseInt(call_data.substring(0, 1));
+			}catch (NumberFormatException e) {
+				e.printStackTrace();
+			}
 			String acao = call_data.substring(1);
-			System.out.println(index);
-			System.out.println(acao);
 			if (new String("on").equals(acao)) {
 				answer = State.liga(index);
 			} else if (new String("off").equals(acao)) {
