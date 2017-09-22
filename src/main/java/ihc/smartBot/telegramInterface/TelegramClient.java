@@ -1,12 +1,19 @@
 package ihc.smartBot.telegramInterface;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+
 import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.methods.updatingmessages.EditMessageText;
 import org.telegram.telegrambots.api.objects.Update;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
 
-public class TelegramClient extends TelegramLongPollingBot implements Token {
+public class TelegramClient extends TelegramLongPollingBot {
+
+	private static File file = new File("Token.txt");
 
 	@SuppressWarnings("deprecation")
 	public void onUpdateReceived(Update update) {
@@ -32,16 +39,14 @@ public class TelegramClient extends TelegramLongPollingBot implements Token {
 			long message_id = update.getCallbackQuery().getMessage().getMessageId();
 			long chat_id = update.getCallbackQuery().getMessage().getChatId();
 			String answer = null;
-			
-			
+
 			int index = Integer.parseInt(call_data.substring(0, 0));
 			String acao = call_data.substring(1);
-		System.out.println(index);
-		System.out.println(acao);
+			System.out.println(index);
+			System.out.println(acao);
 			if (new String("on").equals(acao)) {
 				answer = State.liga(index);
-			}
-			else if(new String("off").equals(acao)) {
+			} else if (new String("off").equals(acao)) {
 				answer = State.desliga(index);
 			}
 
@@ -51,8 +56,7 @@ public class TelegramClient extends TelegramLongPollingBot implements Token {
 				}
 				answer = "todos estão ligados";
 
-			}
-			else if (call_data.equals("desligaTodos")) {
+			} else if (call_data.equals("desligaTodos")) {
 				for (int i = 0; i < 9; i++) {
 					answer = State.desliga(i);
 				}
@@ -76,6 +80,23 @@ public class TelegramClient extends TelegramLongPollingBot implements Token {
 
 	@Override
 	public String getBotToken() {
-		return TOKEN;
+		try {
+		return read(file);
+		}catch (Exception e) {
+			return null;
+		}
+	}
+
+	private String read(File file) {
+
+		try (FileReader fileReader = new FileReader(file); BufferedReader reader = new BufferedReader(fileReader)) {
+			String data = null;
+			while ((data = reader.readLine()) != null) {
+				return data;
+			}
+		} catch (IOException e) {
+			// TODO fazer tratamento de exc
+		}
+		return null;
 	}
 }
