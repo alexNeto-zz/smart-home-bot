@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
+
 import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.methods.updatingmessages.EditMessageText;
 import org.telegram.telegrambots.api.objects.Update;
@@ -81,21 +82,28 @@ public class TelegramClient extends TelegramLongPollingBot {
 	@Override
 	public String getBotToken() {
 		try {
-		return read(file);
-		}catch (Exception e) {
+			return read(file);
+		} catch (Exception e) {
 			return null;
 		}
 	}
 
-	private String read(File file) {
-
-		try (FileReader fileReader = new FileReader(file); BufferedReader reader = new BufferedReader(fileReader)) {
+	private String read(File file) throws IOException {
+		FileReader fileReader = new FileReader(file);
+		BufferedReader reader = new BufferedReader(fileReader);
+		try {
+			
 			String data = null;
 			while ((data = reader.readLine()) != null) {
 				return data;
 			}
 		} catch (IOException e) {
 			// TODO fazer tratamento de exc
+		}
+		finally {
+			fileReader.close();
+			reader.close();
+		
 		}
 		return null;
 	}
