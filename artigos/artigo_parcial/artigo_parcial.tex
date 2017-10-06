@@ -29,16 +29,16 @@ $^{1,2}$FATEC São José dos Campos\\
 
 \section{\bf Introdução}
 
-Com o cenário de interação com o usuario cada vez mais intuitivo e natural, as interfaces baseadas em conversações (CUI - Conversational user interface), estão cada vez mais presente no uso diario, com isso mais dispositivos fornesseram uma interfasse de interação por esse meio.
+Com o cenário de interação com o usuário cada vez mais intuitivo e natural, as interfaces baseadas em conversações (CUI - \textit{Conversational user interface}), estão cada vez mais presente no uso diário, com isso mais dispositivos forneceram uma interfasse de interação por esse meio.
 
-O ojetivo deste trabalho é verificar a viabilidade e encontrar meios mais naturais e intuitivos para interação entre o ser humando e dispositivos de IoT.
+O objetivo deste trabalho é verificar a viabilidade e encontrar meios mais naturais e intuitivos para interação entre o ser humano e dispositivos de IoT.
 
 \section{\bf Materiais e Métodos}
 
 Para facilitar o desenvolvimento o projeto foi separado em duas partes, um que aborda o \textit{chatbot} e outro o dispositivo que vai controlar a casa.
-Esses dois contextos deven funcionar de forma independente.
+Esses dois contextos devem funcionar de forma independente.
 \subsection{contexto do bot}
-Para o desenvolvimento do teste, foi escolhido a plataforma de \textit{chatbot} do Telegram, tanto pela documentação disponível quanto pela facilidade de desenvolvimento. A linguagem utilizada para a implementação do \textit{chatbot} foi o Java, junto com o gerenciamento de dependências, Maven.
+Para o desenvolvimento do teste, foi escolhido a plataforma de \textit{chatbot} do Telegram\cite{telegram}, tanto pela documentação disponível quanto pela facilidade de desenvolvimento. A linguagem utilizada para a implementação do \textit{chatbot} foi o Java, junto com o gerenciamento de dependências, Maven.
 
 \subsection{contexto do IoT}
 \subsubsection{\textit{Hardware}}
@@ -54,10 +54,19 @@ Como objeto de estudo foi iniciado o desenvolvimento para interação entre home
 O usuario pergunta ou faz algum comando, atualmente, apenas por texto, para o \textit{chatbot}. O comando é interpretado e dado o devido comando para o dispositivo IoT.
 
 
-O dispositivo IoT possue um servidor configurtado, que recebe requisições e executa uma função ou conjunto de funções apartir do serviço requisitado.
+O dispositivo IoT possue um servidor configurado, que recebe requisições e executa uma função ou conjunto de funções a partir do serviço requisitado.
 
 
-A resposta do usuario é a ação realizada com sucesso ou uma mensagem alertando da impossiilidade dessa ação.
+A resposta do usuario é a ação realizada com sucesso ou uma mensagem alertando da impossibilidade dessa ação.
+
+
+ 
+\begin{figure}[h]
+\includegraphics[scale=0.1]{img-1}
+\caption{Demonstração de uso.}
+\end{figure}
+
+
 \section{\bf Conclusões}
 Após o desenvolvimento e teste. Foi verificado a possibilidade de uma interface de comunicação entre um dispositivo de  IoT e o Telegram. Foi comprovado a viabilidade de um sistema do tipo. Além disso, foi verificado que um processamento de linguagem natural pode facilitar a interação entre os dispositivos.
 
@@ -66,8 +75,6 @@ Após o desenvolvimento e teste. Foi verificado a possibilidade de uma interface
 
 
 \begin{thebibliography}{99}
-\bibitem{whatsapp} \url{https://www.whatsapp.com/?l=pt_br}
-\href{https://www.whatsapp.com/?l=pt_br}{Aplicativo de conversação}
 \bibitem{telegram}  \url{https://telegram.org/}
 \href{https://telegram.org/}{Aplicativo de conversação que facilita o desenvolvimento de chatBots}
 \bibitem{esp} \url{https://cdn-shop.adafruit.com/product-files/2471/0A-ESP8266__Datasheet__EN_v4.3.pdf}
