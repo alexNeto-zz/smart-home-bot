@@ -8,6 +8,10 @@ dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
 
+*.aux
+*.log
+*.out
+*.gz
 
 ssidPass.h
 Token.txt
