@@ -17,8 +17,10 @@ public class TelegramClient extends TelegramLongPollingBot {
 
 	@SuppressWarnings("deprecation")
 	public void onUpdateReceived(Update update) {
+		
+		boolean messageTest = update.hasMessage() && update.getMessage().hasText();
 
-		if (update.getMessage().hasText()) {
+		if (messageTest) {
 			SendMessage message = Message.message(update);
 			try {
 				sendMessage(message);

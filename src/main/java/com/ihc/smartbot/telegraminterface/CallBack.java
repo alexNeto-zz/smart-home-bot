@@ -45,7 +45,6 @@ public class CallBack {
 		String answer = getCallBack(update.getCallbackQuery().getData());
 		EditMessageText newMessage = new EditMessageText().setChatId(chat_id).setMessageId((int) (message_id))
 				.setText(answer);
-
 		return newMessage;
 	}
 }
