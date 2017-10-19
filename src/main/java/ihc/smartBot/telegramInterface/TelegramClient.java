@@ -19,7 +19,6 @@ public class TelegramClient extends TelegramLongPollingBot {
 	public void onUpdateReceived(Update update) {
 
 		if (update.hasMessage() && update.getMessage().hasText()) {
-			// String message_text = update.getMessage().getText();
 			SendMessage message = Message.message(update);
 			try {
 				sendMessage(message); // Sending our message object to user

@@ -4,7 +4,7 @@ import org.telegram.telegrambots.api.methods.updatingmessages.EditMessageText;
 import org.telegram.telegrambots.api.objects.Update;
 
 public class CallBack {
-	
+
 	public static EditMessageText callBack(Update update) {
 		String call_data = update.getCallbackQuery().getData();
 		long message_id = update.getCallbackQuery().getMessage().getMessageId();
@@ -17,9 +17,9 @@ public class CallBack {
 			e.printStackTrace();
 		}
 		String acao = call_data.substring(1);
-		if (new String("on").equals(acao)) {
+		if ("on".equals(acao)) {
 			answer = State.liga(index);
-		} else if (new String("off").equals(acao)) {
+		} else if ("off".equals(acao)) {
 			answer = State.desliga(index);
 		}
 
@@ -37,7 +37,7 @@ public class CallBack {
 
 		EditMessageText newMessage = new EditMessageText().setChatId(chat_id).setMessageId((int) (message_id))
 				.setText(answer);
-		
+
 		return newMessage;
 	}
 
