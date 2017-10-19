@@ -25,7 +25,6 @@ public class TelegramClient extends TelegramLongPollingBot {
 			} catch (TelegramApiException e) {
 				e.printStackTrace();
 			}
-
 		} else if (update.hasCallbackQuery()) {
 			EditMessageText newMessage = CallBack.callBack(update);
 			try {
