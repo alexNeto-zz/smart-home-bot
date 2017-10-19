@@ -5,24 +5,23 @@ import org.telegram.telegrambots.api.objects.Update;
 
 public class CallBack {
 
-	public static String getCallBack(Update update) {
-		String call_data = update.getCallbackQuery().getData();
+	public static String getCallBack(String callData) {
 		String answer = null;
-		int index = getIndex(call_data.substring(0, 1));
-		String acao = call_data.substring(1);
+		int index = getIndex(callData.substring(0, 1));
+		String acao = callData.substring(1);
 
 		if ("on".equals(acao)) {
-			answer = State.liga(index);
+			answer = State.luz(index, "-on");
 		} else if ("off".equals(acao)) {
-			answer = State.desliga(index);
-		} else if ("todos".equals(call_data)) {
+			answer = State.luz(index, "-off");
+		} else if ("todos".equals(callData)) {
 			for (int i = 0; i < 9; i++) {
-				answer = State.liga(i);
+				answer = State.luz(i, "-on");
 			}
 			answer = "todos estão ligados";
-		} else if ("desligaTodos".equals(call_data)) {
+		} else if ("desligaTodos".equals(callData)) {
 			for (int i = 0; i < 9; i++) {
-				answer = State.desliga(i);
+				answer = State.luz(i, "-off");
 			}
 			answer = "todos estão desligados";
 		}
@@ -43,9 +42,10 @@ public class CallBack {
 	public static EditMessageText callBack(Update update) {
 		long message_id = update.getCallbackQuery().getMessage().getMessageId();
 		long chat_id = update.getCallbackQuery().getMessage().getChatId();
+		String answer = getCallBack(update.getCallbackQuery().getData());
 		EditMessageText newMessage = new EditMessageText().setChatId(chat_id).setMessageId((int) (message_id))
-				.setText(getCallBack(update));
-		
+				.setText(answer);
+
 		return newMessage;
 	}
 }
