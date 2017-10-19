@@ -1,10 +1,10 @@
-package ihc.smartBot;
+package com.ihc.smartbot;
 
 import org.telegram.telegrambots.ApiContextInitializer;
 import org.telegram.telegrambots.TelegramBotsApi;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
 
-import ihc.smartBot.telegramInterface.TelegramClient;
+import com.ihc.smartbot.telegraminterface.TelegramClient;
 
 public class Main {
 	

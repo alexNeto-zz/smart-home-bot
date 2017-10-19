@@ -1,4 +1,4 @@
-package ihc.smartBot.serverConn;
+package com.ihc.smartbot.serveriot;
 
 import java.net.HttpURLConnection;
 import java.net.URL;

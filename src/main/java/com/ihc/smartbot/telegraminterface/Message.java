@@ -1,4 +1,4 @@
-package ihc.smartBot.telegramInterface;
+package com.ihc.smartbot.telegraminterface;
 
 import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.objects.Update;

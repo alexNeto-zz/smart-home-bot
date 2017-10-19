@@ -1,6 +1,6 @@
-package ihc.smartBot.telegramInterface;
+package com.ihc.smartbot.telegraminterface;
 
-import ihc.smartBot.serverConn.ConnectionServer;
+import com.ihc.smartbot.serveriot.ConnectionServer;
 
 public class State {
 
