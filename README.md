@@ -1,6 +1,9 @@
 # Smart home bot
 
 [![Build Status](https://travis-ci.org/alexNeto/smart-home-bot.svg?branch=master)](https://travis-ci.org/alexNeto/smart-home-bot)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/24ec6c739bfc405ead8973438883f4a3)](https://www.codacy.com/app/alexNeto/smart-home-bot?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=alexNeto/smart-home-bot&amp;utm_campaign=Badge_Grade)
+[![Maintainability](https://api.codeclimate.com/v1/badges/14f8fbc90ea509f00f63/maintainability)](https://codeclimate.com/github/alexNeto/smart-home-bot/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/14f8fbc90ea509f00f63/test_coverage)](https://codeclimate.com/github/alexNeto/smart-home-bot/test_coverage)
 
 ## section Materiais e Métodos
 

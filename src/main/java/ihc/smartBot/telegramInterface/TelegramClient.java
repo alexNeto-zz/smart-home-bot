@@ -32,7 +32,7 @@ public class TelegramClient extends TelegramLongPollingBot {
 				}
 			} else if (update.getMessage().getText().equals("")) {
 			} else {
-
+				System.out.println("você está no else");
 			}
 
 		} else if (update.hasCallbackQuery()) {
@@ -53,13 +53,13 @@ public class TelegramClient extends TelegramLongPollingBot {
 				answer = State.desliga(index);
 			}
 
-			else if (call_data.equals("todos")) {
+			else if ("todos".equals(call_data)) {
 				for (int i = 0; i < 9; i++) {
 					answer = State.liga(i);
 				}
 				answer = "todos estão ligados";
 
-			} else if (call_data.equals("desligaTodos")) {
+			} else if ("desligaTodos".equals(call_data)) {
 				for (int i = 0; i < 9; i++) {
 					answer = State.desliga(i);
 				}
@@ -76,7 +76,7 @@ public class TelegramClient extends TelegramLongPollingBot {
 		}
 
 	}
-
+	
 	public String getBotUsername() {
 		return "homeBot";
 	}
@@ -96,7 +96,8 @@ public class TelegramClient extends TelegramLongPollingBot {
 		try {
 			
 			String data = null;
-			while ((data = reader.readLine()) != null) {
+			while (true) {
+				data = reader.readLine();
 				return data;
 			}
 		} catch (IOException e) {
