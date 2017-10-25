@@ -1,132 +1,60 @@
-
+#include <Arduino.h>
 #include <ArduinoJson.h>
 #include <ESP8266HTTPClient.h>
+#include <ESP8266WebServer.h>
 #include <ESP8266WiFi.h>
+#include <ESP8266mDNS.h>
+#include <WiFiClient.h>
 
-#include "ssidPass.h"
+#include "connect.hpp"
 
-void setup() {
-  Serial.begin(115200);
-  WiFi.begin(SSID, PASS);
+MDNSResponder mdns;
+ESP8266WebServer server(80);
+String webPage = "";
 
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(500);
-    Serial.println("Waiting for connection");
-  }
-  Serial.println(WiFi.localIP());
-}
-
-void loop() {
-  if (WiFi.status() == WL_CONNECTED) {
-    StaticJsonBuffer<300> JSONbuffer;
-    JsonObject &JSONencoder = JSONbuffer.createObject();
-
-    JSONencoder["sensorType"] = "Temperature";
-
-    JsonArray &values = JSONencoder.createNestedArray("values");
-    values.add(20);
-    values.add(21);
-    values.add(23);
-
-    JsonArray &timestamps = JSONencoder.createNestedArray("timestamps");
-    timestamps.add("10:10");
-    timestamps.add("10:20");
-    timestamps.add("10:30");
-
-    char JSONmessageBuffer[300];
-    JSONencoder.prettyPrintTo(JSONmessageBuffer, sizeof(JSONmessageBuffer));
-    Serial.println(JSONmessageBuffer);
-
-    HTTPClient http;
-
-    http.begin("http://anteph.pythonanywhere.com/postjson");
-    http.addHeader("Content-Type", "application/json");
-
-    int httpCode = http.POST(JSONmessageBuffer);
-    String payload = http.getString();
-
-    Serial.println(httpCode);
-    Serial.println(payload);
-
-    http.end();
-  } else {
-    Serial.println("Error in WiFi connection");
-  }
-  delay(30000);
-}
-/*
-WiFiServer server(80);
+int gpio0_pin = 0;
+int gpio2_pin = 2;
 
 void setup() {
+  connect();
 
-  Serial.begin(9600);
-  delay(10);
+  pinMode(gpio0_pin, OUTPUT);
+  digitalWrite(gpio0_pin, LOW);
+  pinMode(gpio2_pin, OUTPUT);
+  digitalWrite(gpio2_pin, LOW);
 
-  // prepare GPIO2
-  pinMode(4, OUTPUT);
-  digitalWrite(4, 0);
-
-  pinMode(5, OUTPUT);
-  digitalWrite(5, 0);
-
-  // Connect to WiFi network
-  Serial.println();
-  Serial.println();
-  Serial.print("Connecting to ");
-  Serial.println(ssid);
-
-  WiFi.begin(ssid, password);
-
-  while (WiFi.status() != WL_CONNECTED)
-  {
-    delay(500);
-    Serial.print(".");
+  if (mdns.begin("esp8266", WiFi.localIP())) {
+    Serial.println("MDNS responder started");
   }
 
-  Serial.println("");
-  Serial.println("WiFi connected");
-
-  // Start the server
+  server.on("/", []() { server.send(200, "text/html", webPage); });
+  server.on("/socket1On", []() {
+    server.send(200, "text/html", webPage);
+    digitalWrite(gpio0_pin, HIGH);
+    delay(1000);
+  });
+  server.on("/config/set", HTTP_POST, []() {
+    StaticJsonBuffer<200> newBuffer;
+    JsonObject& newjson = newBuffer.parseObject(server.arg("plain"));
+    server.send(200, "text/json", "{success:true}");
+  });
+  server.on("/socket1Off", []() {
+    server.send(200, "text/html", webPage);
+    digitalWrite(gpio0_pin, LOW);
+    delay(1000);
+  });
+  server.on("/socket2On", []() {
+    server.send(200, "text/html", webPage);
+    digitalWrite(gpio2_pin, HIGH);
+    delay(1000);
+  });
+  server.on("/socket2Off", []() {
+    server.send(200, "text/html", webPage);
+    digitalWrite(gpio2_pin, LOW);
+    delay(1000);
+  });
   server.begin();
-  Serial.println("Server started");
-  Serial.println(WiFi.localIP());
+  Serial.println("HTTP server started");
 }
 
-void loop() {
-
-  WiFiClient client = server.available();
-  if (!client) {
-    return;
-  }
-
-  Serial.println("new client");
-  while (!client.available()) {
-    delay(1);
-  }
-
-  String req = client.readStringUntil('\r');
-  Serial.println("request");
-  Serial.println(req);
-  client.flush();
-
-  Serial.println(req.substring(5));
-
-
-
-  client.flush();
-
-  if (req.indexOf("led[0-9]+") != -1)
-    digitalWrite(5, 1);
-  else if (req.indexOf("led5_off") != -1)
-    digitalWrite(5, 0);
-  else if (req.indexOf("led4_on") != -1)
-    digitalWrite(4, 1);
-  else if (req.indexOf("led4_off") != -1)
-    digitalWrite(4, 0);
-  else {
-    Serial.println("invalid request");
-    client.stop();
-  }
-  Serial.println("Client disonnected");
-}
-*/
+void loop(void) { server.handleClient(); }

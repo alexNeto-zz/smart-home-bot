@@ -17,10 +17,8 @@ public class ConnectionServer {
 			connection.setReadTimeout(15 * 1000);
 			connection.connect();
 			connection.getResponseCode();
-
 		} catch (Exception e) {
 			e.printStackTrace();
-
 		}
 	}
 }
