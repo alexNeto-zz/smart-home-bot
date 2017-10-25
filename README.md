@@ -6,7 +6,15 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/14f8fbc90ea509f00f63/maintainability)](https://codeclimate.com/github/alexNeto/smart-home-bot/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/14f8fbc90ea509f00f63/test_coverage)](https://codeclimate.com/github/alexNeto/smart-home-bot/test_coverage)
 
-## section Materiais e Métodos
+## WIP
+  - [ ] Comunicação entre bot e hardware
+  - [ ] Comunicação entre hardware (esp8266 para arduinos)
+  - [ ] Revisão do funcionamento do bot
+  - [ ] Implementação do deep learning
+  - [ ] Correção de respostas
+  - [ ] Melhoria na funcionalidades
+
+## Materiais e Métodos
 
 Para facilitar o desenvolvimento o projeto foi separado em duas partes, um que aborda o  _chatbot_ e outro o dispositivo que vai controlar a casa.
 Esses dois contextos deven funcionar de forma independente.
