@@ -1,6 +1,6 @@
-#ifndef SSIDPASS_HPP_
-#define SSIDPASS_HPP_
+#ifndef CONNECT_HPP_
+#define CONNECT_HPP_
 
 void connect();
 
-#endif /* SSIDPASS_H_ */
+#endif 
