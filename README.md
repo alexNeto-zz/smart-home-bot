@@ -7,36 +7,30 @@
 [![Test Coverage](https://api.codeclimate.com/v1/badges/14f8fbc90ea509f00f63/test_coverage)](https://codeclimate.com/github/alexNeto/smart-home-bot/test_coverage)
 
 ## WIP
-  - [ ] Comunicação entre bot e hardware
-  - [ ] Comunicação entre hardware (esp8266 para arduinos)
-  - [ ] Revisão do funcionamento do bot
-  - [ ] Implementação do deep learning
-  - [ ] Correção de respostas
-  - [ ] Melhoria na funcionalidades
+  - [ ] communication between bot and hardware
+  - [ ] communication between esp8266 and arduinos
+  - [ ] Unit test in the bot
+  - [ ] Unit test in the IoT part
+  - [ ] implement deep learning (I need to learn to do this first haha)
+  - [ ] give less mechanical response to the user
+  - [ ] Improvise. Adapt. Overcome
 
-## Materiais e Métodos
+## Materials and methods
 
-Para facilitar o desenvolvimento o projeto foi separado em duas partes, um que aborda o  _chatbot_ e outro o dispositivo que vai controlar a casa.
-Esses dois contextos deven funcionar de forma independente.
+To make it easy, the development was separated into two parts, one to the _chatbot_ and other to the _IoT_ that will control the "house"
+These two context have to work separately.
 
-### contexto do bot
-Para o desenvolvimento do teste, foi escolhido a plataforma de \textit{chatbot} do Telegram, tanto pela documentação disponível quanto pela facilidade de desenvolvimento. A linguagem utilizada para a implementação do \textit{chatbot} foi o Java, junto com o gerenciamento de dependências, Maven.
+### Bot context
+The [Telegram api](https://core.telegram.org/) offers a complete platform to develp chatbot and even games and it's free.
+The weapon of choose is Java, because of reasons. 
 
 ### contexto do IoT
 #### _Hardware_
-O dispositivo utilizado foi o_esp8266_, pela capacidade de conexão via _WiFi_. Tambem foram utilizados LEDs e resistores para a representação da comunicação entre _chatbot_ e dispositivo de IoT.
+The Thing is the esp8266 because is cheap and have all that we need for this project, I'm also using some LEDs ans resistors to see the response.
 
 #### _Software_
-Para a programação do esp8266, foi utlilizado a linguagem de programação do arduino.
+The language to develop the IoT part is the Arduino language (almost C++) and some parts of pure C++ and C.
 
-# Funcionamento
-Como objeto de estudo foi iniciado o desenvolvimento para interação entre homem e dispositivo de IoT(_Internet of Things_), como meio de facilitar a utilização e verificar a viabilidade desse metodo.
+# How it works
+The chatbot gets the command from the user, and for this fase of the project this command is passed with sockets to the esp8266 via WiFi
 
-
-O usuario pergunta ou faz algum comando, atualmente, apenas por texto, para o _chatbot_. O comando é interpretado e dado o devido comando para o dispositivo IoT.
-
-
-O dispositivo IoT possue um servidor configurtado, que recebe requisições e executa uma função ou conjunto de funções apartir do serviço requisitado.
-
-
-A resposta do usuario é a ação realizada com sucesso ou uma mensagem alertando da impossibilidade dessa ação.
