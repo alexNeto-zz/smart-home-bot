@@ -24,7 +24,7 @@ These two context have to work separately.
 The [Telegram api](https://core.telegram.org/) offers a complete platform to develp chatbot and even games and it's free.
 The weapon of choose is Java, because of reasons. 
 
-### contexto do IoT
+### IoT context
 #### _Hardware_
 The Thing is the esp8266 because is cheap and have all that we need for this project, I'm also using some LEDs ans resistors to see the response.
 
